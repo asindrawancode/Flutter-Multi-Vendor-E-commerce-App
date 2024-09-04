@@ -10,10 +10,11 @@ authRouter.post('/api/signup', async(req, res)=>{
         if(existingEmail){
             return res.status(value).json({msg:"user with same email already exsits"});
         } else{
-            var user = new User({fullName, email, password});
+            let user = new User({fullName, email, password});
             await user.save();
             res.json({user});
         }
     } catch(errro) {
+        res.status(500).json({error:e.message});
     }
 });
